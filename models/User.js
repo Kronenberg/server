@@ -7,19 +7,17 @@ const bcrypt = require('bcrypt-nodejs');
 // @add bcrypt
 // @add crypt
 const UserSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  token: {type: String, required: true }
+  password: { type: String, required: true }
 });
 // methods ======================
 // generating a hash
-UserSchema.methods.generateHash = password => {
+UserSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 // checking if password is valid
-UserSchema.methods.validPassword = password => {
+UserSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
