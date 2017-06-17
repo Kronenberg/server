@@ -12,6 +12,7 @@ const morgan = require('morgan');
 const flash = require('connect-flash');
 const boom = require('express-boom');
 const fileUpload = require('express-fileupload');
+const cloudinary = require('cloudinary');
 // @ERRORS
 const log = console.log;
 const rejected = chalk.red.underline.bold;
@@ -52,6 +53,12 @@ app.use(fileUpload({
   limits: { fileSize: 50 * 1024 * 1024 },
 }));
 
+cloudinary.config({
+  cloud_name: config.CLOUDINARY_APP_NAME,
+  api_key: config.CLOUDINARY_API_KEY,
+  api_secret: config.CLOUDINARY_API_SECRET
+});
+
 // app.use((req, res, next) => {
 //   if (!req.user &&
 //     req.path !== '/login' &&
@@ -87,7 +94,7 @@ mongoose.connection.on('open', () => {
 
 app.get('/', homeController.checkAuthMain);
 
-app.post('/uploads', localFileUpload.uploadFile);
+// app.post('/uploads', localFileUpload.uploadFile);
 
 app.post('/signup', authController.signUpLocal);
 app.post('/login', authController.loginLocal);
@@ -99,8 +106,11 @@ app.get('/logout', authController.userLogoutLocal);
 
 app.get('/api/users', userManagementController.getAllUsers);
 
+app.post('/uploadImage', localFileUpload.uploadToCloudinary);
+
 app.listen(config.PORT, () => {
   log(success('Node app is running on port'), config.PORT);
 });
+
 
 

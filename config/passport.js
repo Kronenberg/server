@@ -24,6 +24,7 @@ module.exports = function(passport) {
   passport.use('local-signup', new LocalStrategy({
       usernameField : 'email',
       passwordField : 'password',
+      avatarField : 'avatar',
       passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) {
@@ -40,6 +41,7 @@ module.exports = function(passport) {
 
             newUser.email    = email;
             newUser.password = newUser.generateHash(password);
+            newUser.avatar = req.flash('avatar');
 
             newUser.save(function(err) {
               if (err)

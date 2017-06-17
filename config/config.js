@@ -7,5 +7,10 @@ module.exports = {
   "DBADMIN": "kronenberg",
   "SECRET_WEB_TOKEN": "youdontknowjavascript",
   "DBPASSWORD": "Amber1991",
-  "MONGODB_URI": "mongodb://<dbuser>:<dbpassword>@ds139685.mlab.com:39685/kronendb"
+  "CLOUDINARY_APP_NAME": "lvocamzwt",
+  "CLOUDINARY_API_KEY": "368679472232175",
+  "CLOUDINARY_API_SECRET": "d3Nb5xkiHaJ39wnunvSL333wHqs",
+  "CLOUDINARY_BASE_DELIVERY_URL": "http://res.cloudinary.com/lvocamzwt",
+  "CLOUDINARY_SECURE_URL": "https://res.cloudinary.com/lvocamzwt",
+  "CLOUDINARY_BASE_URL": "	https://api.cloudinary.com/v1_1/lvocamzwt",
 }
