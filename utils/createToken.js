@@ -13,7 +13,7 @@ function createToken(user) {
     scope = 'admin';
   }
 
-  // Sign the JWT
+  // Sign the JWTgit
   return jwt.sign({
     email: user.email,
     password: user.password
