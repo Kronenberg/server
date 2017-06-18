@@ -1,18 +1,11 @@
 const fs = require('fs-extra');
 const cloudinary = require('cloudinary');
 const waterfall = require('async-waterfall');
-const util = require('util');
-const stream = require('stream');
-const Writable = stream.Writable || require('readable-stream').Writable;
 
 
+exports.uploadToCloudinary = (req, res, next) => {
 
-
-
-  exports.uploadToCloudinary = (req, res, next) => {
-
-    let sampleFile = req.files.sampleFile;
-    let fileName = req.body.title;
+    const fileName = req.body.title;
 
 
     const uploadFileLocally = () => {
